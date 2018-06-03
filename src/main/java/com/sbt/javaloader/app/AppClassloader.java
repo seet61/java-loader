@@ -1,4 +1,6 @@
-package com.sbt.javaloader.api;
+package com.sbt.javaloader.app;
+
+import com.sbt.javaloader.api.ApiClassloader;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -7,11 +9,11 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-public class ApiClassloader extends ClassLoader {
+public class AppClassloader extends ClassLoader{
     //путь для загрузки
     private String pathToBin = "target" + File.separator + "classes";
 
-    public ApiClassloader(ClassLoader parent) {
+    public AppClassloader(ClassLoader parent) {
         super(parent);
     }
 
