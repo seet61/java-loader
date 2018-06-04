@@ -1,4 +1,4 @@
-package com.sbt.javaloader.impl;
+package com.sbt.javaloader.app;
 
 import com.sbt.javaloader.api.ApiClassloader;
 
@@ -9,11 +9,11 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-public class ImplClassloader extends ClassLoader{
+public class AppClassloader extends ClassLoader{
     //путь для загрузки
     private String pathToBin = "target" + File.separator + "classes";
 
-    public ImplClassloader(ClassLoader parent) {
+    public AppClassloader(ClassLoader parent) {
         super(parent);
     }
 

@@ -9,11 +9,10 @@ import java.nio.file.Paths;
 
 public class ApiClassloader extends ClassLoader {
     //путь для загрузки
-    private String pathToClass;
+    private String pathToBin = "target" + File.separator + "classes";
 
-    public ApiClassloader(ClassLoader parent, String pathToClass) {
+    public ApiClassloader(ClassLoader parent) {
         super(parent);
-        this.pathToClass = pathToClass;
     }
 
     public Class<?> findClass(String className) throws ClassNotFoundException {
@@ -22,7 +21,7 @@ public class ApiClassloader extends ClassLoader {
              * Получем байт-код из файла и загружаем класс в рантайм
              */
             ///https://www.concretepage.com/java/custom-classloader-java-example
-            File f = new File(this.pathToClass,className.replace(".", "/") + ".class");
+            File f = new File(pathToBin, className.replace(".", File.separator) + ".class");
             System.out.println(f.toString());
             byte b[] = loadClassData(f.toString());
             return defineClass(className, b, 0, b.length);
