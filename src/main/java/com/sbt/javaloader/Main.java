@@ -1,11 +1,13 @@
 package com.sbt.javaloader;
 
 import com.sbt.javaloader.api.ApiClassloader;
-import com.sbt.javaloader.api.ICalculator;
 import com.sbt.javaloader.app.AppClassloader;
 import com.sbt.javaloader.app.CalculatorApp;
 import com.sbt.javaloader.impl.CalculatorImpl;
 import com.sbt.javaloader.impl.ImplClassloader;
+
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 
 public class Main {
     public static void main(String[] args) {
@@ -19,13 +21,14 @@ public class Main {
 
             //загрузка имплементации
             Class<?> calcImpl = implClassloader.findClass("com.sbt.javaloader.impl.CalculatorImpl");
-            CalculatorImpl calculatorImpl = (CalculatorImpl) calcImpl.newInstance();
+            Object calculatorImpl = calcImpl.newInstance();
 
             //загрузка приложения
             Class<?> calcApp = appClassloader.findClass("com.sbt.javaloader.app.CalculatorApp");
-            CalculatorApp calculatorApp = (CalculatorApp) calcApp.newInstance();
+            Object calculatorApp = calcApp.newInstance();
             //проверяем что вызывается метод корректно
-            calculatorApp.addition();
+            Method md = calcApp.getMethod("addition");
+            md.invoke(calculatorApp);
 
             //из AppClassloader недоступна загрузка CalculatorImpl
             Class<?> calcApp1 = appClassloader.findClass("com.sbt.javaloader.impl.CalculatorImpl");
@@ -33,11 +36,15 @@ public class Main {
             System.out.println(calculatorImpl1.addition(1, 2));
 
         } catch (ClassNotFoundException e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
         } catch (IllegalAccessException e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
         } catch (InstantiationException e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
+        } catch (NoSuchMethodException e) {
+            System.out.println(e.getMessage());
+        } catch (InvocationTargetException e) {
+            System.out.println(e.getMessage());
         }
     }
 }
