@@ -10,6 +10,6 @@ public class CalculatorApp {
     }
 
     public void addition() {
-        System.out.println(this.calculator.addition(2, 2));;
+        System.out.println(this.calculator.addition(2, 2));
     }
 }

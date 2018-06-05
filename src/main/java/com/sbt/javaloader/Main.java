@@ -2,7 +2,6 @@ package com.sbt.javaloader;
 
 import com.sbt.javaloader.api.ApiClassloader;
 import com.sbt.javaloader.app.AppClassloader;
-import com.sbt.javaloader.app.CalculatorApp;
 import com.sbt.javaloader.impl.CalculatorImpl;
 import com.sbt.javaloader.impl.ImplClassloader;
 
@@ -35,15 +34,7 @@ public class Main {
             CalculatorImpl calculatorImpl1 = (CalculatorImpl) calcApp1.newInstance();
             System.out.println(calculatorImpl1.addition(1, 2));
 
-        } catch (ClassNotFoundException e) {
-            System.out.println(e.getMessage());
-        } catch (IllegalAccessException e) {
-            System.out.println(e.getMessage());
-        } catch (InstantiationException e) {
-            System.out.println(e.getMessage());
-        } catch (NoSuchMethodException e) {
-            System.out.println(e.getMessage());
-        } catch (InvocationTargetException e) {
+        } catch (ClassNotFoundException | IllegalAccessException | InstantiationException | NoSuchMethodException | InvocationTargetException e) {
             System.out.println(e.getMessage());
         }
     }

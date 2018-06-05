@@ -1,7 +1,5 @@
 package com.sbt.javaloader.app;
 
-import com.sbt.javaloader.api.ApiClassloader;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -37,7 +35,6 @@ public class AppClassloader extends ClassLoader{
     private byte[] loadClassData(String name) throws FileNotFoundException, IOException {
         // load the class data from the connection
         Path path = Paths.get(name);
-        byte[] data = Files.readAllBytes(path);
-        return data;
+        return Files.readAllBytes(path);
     }
 }

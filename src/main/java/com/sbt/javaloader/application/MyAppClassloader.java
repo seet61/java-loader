@@ -35,7 +35,6 @@ public class MyAppClassloader extends ClassLoader {
     private byte[] loadClassData(String name) throws FileNotFoundException, IOException {
         // load the class data from the connection
         Path path = Paths.get(name);
-        byte[] data = Files.readAllBytes(path);
-        return data;
+        return Files.readAllBytes(path);
     }
 }
