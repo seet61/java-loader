@@ -11,7 +11,7 @@ public class MyApp extends CalculatorApp {
 
     @Override
     public void addition() {
-        System.out.println(this.calculator.addition(5, 5));
+        System.out.println(calculator.addition(5, 5));
     }
 
     /*public static void main(String[] args) {

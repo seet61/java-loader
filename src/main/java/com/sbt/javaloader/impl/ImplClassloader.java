@@ -32,7 +32,7 @@ public class ImplClassloader extends ClassLoader{
         }
     }
 
-    private byte[] loadClassData(String name) throws FileNotFoundException, IOException {
+    private byte[] loadClassData(String name) throws IOException {
         // load the class data from the connection
         Path path = Paths.get(name);
         return Files.readAllBytes(path);
